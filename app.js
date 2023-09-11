@@ -2,6 +2,7 @@ let allPokemon = [];
 let tableauFin = [];
 const searchInput = document.querySelector('.recherche-poke input');
 const listePoke = document.querySelector('.liste-poke');
+const chargement = document.querySelector('.loader');
 
 const types = {
     grass: '#78c850',
@@ -31,6 +32,28 @@ window.addEventListener('scroll', () => {
         addPoke(6);
     }
 })
+
+searchInput.addEventListener('keyup', recherche);
+
+function recherche() {
+    if (index < 151) {
+        addPoke(130);
+    }
+    let flitre, allLi, titleValue, allTitles;
+    filter = searchInput.value.toUpperCase();
+    allLi = document.querySelectorAll('li');
+    allTitles = document.querySelectorAll('li > h5');
+
+    for (i = 0; i < allLi.length; i++) {
+        titleValue = allTitles[i].innerText;
+
+        if (titleValue.toUpperCase().indexOf(filter) > -1) {
+            allLi[i].style.display = "flex";
+        } else {
+            allLi[i].style.display = "none";
+        }
+    }
+}
 
 let index = 21;
 function addPoke(nb) {
@@ -75,6 +98,7 @@ function fetchPokemonComplet(pokemon) {
                             return a.id - b.id;
                         }).slice(0, 21);
                         createCard(tableauFin);
+                        chargement.style.display = "none";
                     }
                 })
         })

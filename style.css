@@ -115,3 +115,29 @@ ul {
     color: #333;
     margin-bottom: 10px;
 }
+
+.loader {
+  position: absolute;
+  top: 250px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader img {
+  animation: rotatePokeball 2s linear infinite;
+  width: 200px;
+  height: 200px;
+}
+
+
+@keyframes rotatePokeball {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
